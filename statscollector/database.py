@@ -12,6 +12,8 @@ class Clients(Base):
     __tablename__ = "clients"
     id = Column(Integer, primary_key=True, nullable=False)
     key = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    description = Column(String, nullable=True)
 
 
 class CollectorTable(object):
