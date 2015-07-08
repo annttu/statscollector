@@ -1,5 +1,6 @@
 import routes
 import database
+import configuration
 
 if __name__ == '__main__':
     database.DB.create_tables()
