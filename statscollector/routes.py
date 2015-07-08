@@ -37,13 +37,10 @@ def callback():
 
     s = database.DB.get_session()
 
-
-    print(crypted_key)
     client = s.query(database.Clients).filter(database.Clients.key==crypted_key).all()
     if len(client) == 0:
         raise HTTPError(status=401, message="Permission denied")
 
-    print(client)
     client = client[0]
 
 
@@ -55,6 +52,10 @@ def callback():
         if x in data:
             for i in data[x]:
                 value = t()
+                for x in ['elevation', 'lat', 'lon', 'speed', 'status', 'timestamp', 'value']:
+                    if x not in i:
+                        logger.error("Invalid row %s" % (i,))
+                        continue
                 value.client = client.id
                 value.elevation = i['elevation']
                 value.lat = i['lat']
