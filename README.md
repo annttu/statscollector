@@ -25,6 +25,7 @@ Setup postgresql with postgis and create database and user for statscollector.
 Configure database to statscollector
 
     cp local_config.py.sample local_config.py
+    chmod 600 local_config.py
     vim local_config.py
 
 Done!
