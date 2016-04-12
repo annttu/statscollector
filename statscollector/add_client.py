@@ -22,12 +22,12 @@ if __name__ == '__main__':
     s = database.DB.get_session()
 
     new_token = ''.join([random.choice(string.ascii_letters + string.digits) for x in range(32)])
-    routes.create_password(new_token)
+    new_token_hash = routes.create_password(new_token)
 
     new_client = database.Clients()
     new_client.name = args.name
     new_client.description = args.description
-    new_client.key = new_token
+    new_client.key = new_token_hash
 
     s.add(new_client)
     s.commit()
