@@ -1,19 +1,48 @@
 statscollector
 ==============
 
-Työkalu networktesterin lähettämien statistiikkojen keräämiseen.
-Tallentaa saadut statsit tietokantaan.
+Server to collect statistics sent by networktester. Statistics are saved to database.
 
-Asennus
-=======
+Installation
+============
 
+    git clone https://github.com/annttu/statscollector.git
+    cd statscollector/
     virtualenv env --python=python3.4
     . env/bin/activate
     pip install -r requirements.txt    
 
-Käyttö
-=======
+Setup postgresql with postgis and create database and user for statscollector.
+
+    create user statscollector with password 'statscollector';
+    grant all on database statscollector to statscollector;
+    revoke all on database statscollector from public;
+    \c statscollector
+    create extension postgis;
+    alter table spatial_ref_sys owner to statscollector;
+    \q
+
+Configure database to statscollector
+
+    cp local_config.py.sample local_config.py
+    vim local_config.py
+
+Done!
+
+
+Usage
+=====
 
     python statscollector/app.py
 
+License
+=======
 
+The MIT License (MIT)
+Copyright (c) 2015 Antti Jaakkola
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
