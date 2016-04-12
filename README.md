@@ -31,10 +31,18 @@ Configure database to statscollector
 Done!
 
 
-Usage
-=====
+Run server
+==========
 
+    . env/bin/activate
     python statscollector/app.py
+
+
+Add clients
+===========
+
+    . env/bin/activate
+    python statscollector/add_client.py -n "client_name" -d "Client Description"
 
 License
 =======
